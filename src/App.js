@@ -67,10 +67,7 @@ function App() {
 			const USDBalance = balance.cUSD
 				.shiftedBy(-ERC20_DECIMALS)
 				.toFixed(2);
-			const contract = new kit.web3.eth.Contract(
-				Gadget,
-				contractAddress
-			);
+			const contract = new kit.web3.eth.Contract(Gadget, contractAddress);
 			setcontract(contract);
 			setcUSDBalance(USDBalance);
 		} catch (error) {
@@ -82,19 +79,17 @@ function App() {
 		const gadgetsLength = await contract.methods.getgadgetsLength().call();
 		const _gadgett = [];
 		for (let index = 0; index < gadgetsLength; index++) {
-			let _gadgets= new Promise(async (resolve, reject) => {
+			let _gadgets = new Promise(async (resolve, reject) => {
 				let gadget = await contract.methods.getGadget(index).call();
-
 				resolve({
 					index: index,
 					owner: gadget[0],
-					gadgetId:gadget[1],
-					image:gadget[2],
-					name:gadget[3],
-					description:gadget[4],
+					gadgetId: gadget[1],
+					image: gadget[2],
+					name: gadget[3],
+					description: gadget[4],
 					price: gadget[5],
-					like: gadget[6]
-					 
+					like: gadget[6],
 				});
 			});
 			_gadgett.push(_gadgets);
@@ -116,10 +111,8 @@ function App() {
 			console.log(error);
 		}
 	};
- 
- 
 
-	const buyGadget= async (_index) => {
+	const buyGadget = async (_index) => {
 		try {
 			const cUSDContract = new kit.web3.eth.Contract(
 				IERC,
@@ -129,42 +122,52 @@ function App() {
 			await cUSDContract.methods
 				.approve(contractAddress, gadgets[_index].price)
 				.send({ from: address });
-			await contract.methods.buyGadget(_index).send({ from: address });
+			await contract.methods.buyGlass(_index).send({ from: address });
 			getGadget();
 			getBalance();
 		} catch (error) {
 			console.log(error);
 		}
 	};
-	
+
 	const RemoveGadget = async (_index) => {
 		try {
-		  await contract.methods.RemoveGadget(_index).send({ from: address });
-		  getGadget();
-		  getBalance();
+			await contract.methods.RemoveGlasses(_index).send({ from: address });
+			getGadget();
+			getBalance();
 		} catch (error) {
-		  alert(error);
-		}};
+			alert(error);
+		}
+	};
 
-		const Like= async (_index) => {
-		  try {
+	const Like = async (_index) => {
+		try {
 			await contract.methods.Like(_index).send({ from: address });
 			getGadget();
 			getBalance();
-		  } catch (error) {
+		} catch (error) {
 			alert.log(error);
-		  }};
+		}
+	};
 	return (
-		<div>
-			<Navbar balance={cUSDBalance} />
-			
-				<Gadgets gadgets={gadgets}
-				buyGadget={buyGadget}
-				RemoveGadget={RemoveGadget}
-				Like={Like}
-			/>
-			<CreateGadget AddGadget={AddGadget} />
-		</div>
+		<>
+			{address && kit ? (
+				<div>
+					<Navbar balance={cUSDBalance} />
+
+					<Gadgets
+						gadgets={gadgets}
+						buyGadget={buyGadget}
+						RemoveGadget={RemoveGadget}
+						Like={Like}
+						address={address}
+					/>
+					<CreateGadget AddGadget={AddGadget} />
+				</div>
+			) : (
+				""
+			)}
+		</>
 	);
 }
 
