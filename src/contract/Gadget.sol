@@ -53,7 +53,7 @@ contract Gadgets {
     mapping(uint => Glass) internal glasses;
     mapping(uint256 => mapping(address => bool)) likes; // glasses liked by all users
 
-    /// @dev  function to use to add books
+    /// @dev  function to use to add glasses
     function addGlass(
         string calldata _image,
         string calldata _name,
