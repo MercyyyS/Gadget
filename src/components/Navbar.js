@@ -9,7 +9,7 @@ const Navbar = (props) => {
 
       <div className="container-fluid">
 
-        <a className="navbar-brand" href="/#">Evently</a>
+        <a className="navbar-brand" href="/#">Gadgetit</a>
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 
