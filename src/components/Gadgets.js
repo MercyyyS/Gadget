@@ -1,51 +1,67 @@
-import React from 'react';
- 
+import React from "react";
 
 const Gadgets = (props) => {
+	return (
+		<div className="container">
+			<div className="cards">
+				<div className="row mt-5">
+					{props.gadgets.map((gadd) => (
+						<div className="col-md-4" key={gadd.index}>
+							<div className="card text-center mt-5">
+								<img
+									src={gadd.image}
+									alt="img"
+									className="card-img-top"
+								/>
 
-   
-    return (
-      <div className='conatainer'> 
-      <div className='cards'> 
-      <div className='row'> 
-      {props.gadget.map((gadd) => (
-      <div className='col-md-4' key={gadd.index}> 
-      <div className='card text-center'>
+								<div className="card-body text-dark">
+									<h4 className="card-name">
+										Gadget Name: {gadd.name}
+									</h4>
+									<p className="card-text text-seconadry">
+										Description:{gadd.description}
+									</p>
+									<h4 className="price">
+										price {gadd.price /  1000000000000000000}
+										cUSD
+									</h4>
+									<div>
+										{gadd.owner !== props.address && (
+											<a
+												href="/#"
+												className="btn btn-outline-success btw"
+												onClick={() =>
+													props.buyGadget(gadd.index)
+												}
+											>
+												Buy glass
+											</a>
+										)}
 
-        <div class="card-img">
-          <img src={gadd.image} alt='img'/>
-          </div>
-        
-        <div className='card-body text-dark'>
-          <h4 className='card-name'>Card Name {gadd.name}</h4>
-          <p className='card-text text-seconadry'>Description {gadd.description}</p>
-          <h4 className='price'>price {gadd.price / 1000000000000000000}cUSD</h4>
-          <div>
-          {props.onlyOwner !== gadd.owner && (
-          <a href='/#' className='btn btn-outline-success btw' onClick={() => props.buyGadget(gadd.index)}>Buy Gadget</a>
-          )}
-          
-          {props.onlyOwner === gadd.owner && (
-            <div>
-          
-            <button type='button' class="btn btn-outline-dark btw" onClick={ ()=> props.RemoveGadget(gadd.index)}>unpublish Magazine</button>
-                 </div>
-          )}
-          </div>
-          
-        </div>
-      </div>
-      </div>
-      ))}
-      </div>
-      </div>
-      </div>
-    )
-  
-    }
-  
-  
-  
-  
-  
-  export default Gadgets;
+										{gadd.owner === props.address && (
+											<div>
+												<button
+													type="button"
+													className="btn btn-outline-dark btw"
+													onClick={() =>
+														props.RemoveGadget(
+															gadd.index
+														)
+													}
+												>
+													remove gadget
+												</button>
+											</div>
+										)}
+									</div>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default Gadgets;
