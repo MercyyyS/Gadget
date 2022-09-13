@@ -3,9 +3,9 @@ import React from "react";
 const Navbar = (props) => {
 	return (
 		<header>
-			<nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<nav className="navbar navbar-expand-md navbar-dark fixed-top bg-light">
 				<div className="container-fluid">
-					<a className="navbar-brand" href="/#">
+					<a className="navbar-brand bg-dark" href="/#">
 						Gadgetit
 					</a>
 

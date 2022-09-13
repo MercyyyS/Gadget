@@ -84,12 +84,11 @@ function App() {
 				resolve({
 					index: index,
 					owner: gadget[0],
-					gadgetId: gadget[1],
-					image: gadget[2],
-					name: gadget[3],
-					description: gadget[4],
-					price: gadget[5],
-					like: gadget[6],
+					image: gadget[1],
+					name: gadget[2],
+					description: gadget[3],
+					price: gadget[4],
+					like: gadget[5],
 				});
 			});
 			_gadgett.push(_gadgets);
